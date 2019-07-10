@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+    <div class="d-flex justify-content-center">
+            <!-- <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">Navigations</button>
+            <mat-menu #menu="matMenu">
+              <button routerLink="/loans" routerLinkActive="active" mat-menu-item>All Loans </button>
+              <button [routerLink]="['/loan',0]" routerLinkActive="active" mat-menu-item>New Loan</button>
+            </mat-menu> -->
+            <button  color="primary" mat-raised-button  routerLink="/loans" routerLinkActive="active" >All Loans </button>
+            
+            <button  color="primary" mat-raised-button  [routerLink]="['/loan',0]" routerLinkActive="active" >New Loan</button>
+          
+    </div>
+    <div class="row"></div>
+<router-outlet></router-outlet>

@@ -1,0 +1,82 @@
+<form class="example-form">
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-3">
+                <mat-form-field >
+                    <input matInput required placeholder="Loan Amount" [(ngModel)]="loan.LoanAmount" name="LoanAmount" type="number">
+                </mat-form-field>
+                <mat-form-field >
+                    <input matInput required placeholder="Tenure in Months" [(ngModel)]="loan.Tenure" name="Tenure" type="number">
+                </mat-form-field>
+                <mat-form-field >
+                    <input matInput required placeholder="Rate" [(ngModel)]="loan.Interest" name="Rate" type="number">
+                </mat-form-field>
+                <mat-form-field >
+                    <input matInput required placeholder="Loan Date" [(ngModel)]="loan.firstInstallmentDate" name="LoanDate" type="date">
+                </mat-form-field>    
+            </div>
+            <div class="col-md-3 col-tab-1">
+                <mat-form-field >
+                    <input matInput readonly placeholder="RepSch Type" value="Straight Line"  name="RepSch">
+                </mat-form-field>
+                <mat-form-field >
+                    <input matInput readonly placeholder="Int Rate Basis" value="Actual/{{loan.loanDaysType}}" name="RateBasis">
+                </mat-form-field>
+                <mat-form-field >
+                    <input matInput readonly placeholder="No. of Days in a Month" value="Actual" name="MonthDays">
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>No. of Days in a Year</mat-label>
+                    <mat-select required [(ngModel)]="loan.loanDaysType"  name="LoanDays">
+                        <mat-option *ngFor="let loanDaysType of loanDaysTypes" [value]="loanDaysType.value">
+                        {{loanDaysType.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field >
+                    <input matInput readonly placeholder="Interest Type" value="Fixed - Reducing" name="InterestType">
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>EMI Due Date</mat-label>
+                    <mat-select required [(ngModel)]="loan.dueDateType"  name="Duedate">
+                        <mat-option *ngFor="let dueDateType of dueDateTypes" [value]="dueDateType.value">
+                        {{dueDateType.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 ">
+                    <mat-form-field >
+                        <input matInput readonly placeholder="Principal Grace"  value="0 Month(s)" name="PrincipalGrace" >
+                    </mat-form-field>
+                    <mat-form-field >
+                        <input matInput readonly placeholder="Interest Grace" value="0 Month(s)" name="InterestGrace">
+                    </mat-form-field>
+                    <mat-form-field >
+                        <input matInput readonly placeholder="Capitalize" value="No" name="Capitalize">
+                    </mat-form-field>
+                    <mat-form-field >
+                        <input matInput readonly placeholder="Compounding" value="No"  name="Compounding">
+                    </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                    <mat-form-field >
+                        <input matInput readonly placeholder="EMI on "  value="Disbursement Amount " name="EMIOn">
+                    </mat-form-field>
+                    <mat-form-field >
+                        <input matInput readonly placeholder="Disbursement" value="Full" name="Disbursement">
+                    </mat-form-field>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+                <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">Actions</button>
+                <mat-menu #menu="matMenu">
+                  <button color="primary" mat-menu-item (click)="generateSchedules()">Generate Schedules</button>
+                  <button color="primary" mat-menu-item (click)="saveLoan()">Save Loan</button>
+                  <button color="primary" mat-menu-item (click)="newLoan()">Book New Loan</button>
+                </mat-menu>
+        </div>
+    </div>
+
+</form>
+<app-schedules [schedules]="loan.Schedules"></app-schedules>
