@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Loan {
@@ -138,5 +139,27 @@ public class Loan {
                 ", eachEmi=" + eachEmi +
                 ", schedules=" + schedules +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Loan loan = (Loan) o;
+        return Objects.equals(loanId, loan.loanId) &&
+                Objects.equals(loanAmount, loan.loanAmount) &&
+                Objects.equals(interest, loan.interest) &&
+                Objects.equals(tenure, loan.tenure) &&
+                Objects.equals(firstInstallmentDate, loan.firstInstallmentDate) &&
+                dueDateType == loan.dueDateType &&
+                Objects.equals(discountingFactor, loan.discountingFactor) &&
+                loanDaysType == loan.loanDaysType &&
+                Objects.equals(eachEmi, loan.eachEmi) &&
+                Objects.equals(schedules, loan.schedules);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(loanId, loanAmount, interest, tenure, firstInstallmentDate, dueDateType, discountingFactor, loanDaysType, eachEmi, schedules);
     }
 }

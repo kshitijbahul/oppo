@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Loan } from 'src/models/loan.model';
 
-const apiEndPoint = `http://localhost:3002/`;
+//const apiEndPoint = `http://localhost:3002/`;
+const apiEndPoint = `/`;
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type':  'application/json'
